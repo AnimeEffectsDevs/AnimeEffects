@@ -1,4 +1,5 @@
 #include <QScrollBar>
+#include <QElapsedTimer>
 #include "gui/TimeLineWidget.h"
 
 namespace gui
@@ -245,7 +246,7 @@ void TimeLineWidget::mouseDoubleClickEvent(QMouseEvent* aEvent)
 void TimeLineWidget::wheelEvent(QWheelEvent* aEvent)
 {
     QPoint viewTrans = viewportTransform();
-    const QPoint cursor = aEvent->position().toPoint();
+    const QPoint cursor = aEvent->pos();
     const QRect rectPrev = mInner->rect();
 
     mInner->updateWheel(aEvent);
