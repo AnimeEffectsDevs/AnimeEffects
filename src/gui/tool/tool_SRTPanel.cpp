@@ -32,7 +32,7 @@ void SRTPanel::createMode()
     mTypeGroup->setChoice(mParam.mode);
     mTypeGroup->setToolTips(QStringList() <<
                             tr("Transform SRT") <<
-                            tr("Transform Centroid"));
+                            tr("Transform the Centroid"));
     mTypeGroup->setIcons(QVector<QIcon>() << mResources.icon("move") << mResources.icon("transcent"));
     mTypeGroup->connect([=](int aIndex)
     {
@@ -41,30 +41,30 @@ void SRTPanel::createMode()
         this->onParamUpdated(true);
     });
 
-    mAddMove.reset(new CheckBoxItem(tr("necessarily move"), this));
-    mAddMove->setToolTip(tr("Necessarily add a MoveKey if the posture is modified."));
+    mAddMove.reset(new CheckBoxItem(tr("Always move"), this));
+    mAddMove->setToolTip(tr("Always add a move key when modifying the posture."));
     mAddMove->connect([=](bool aChecked)
     {
         this->mParam.necessarilyMove = aChecked;
         this->onParamUpdated(false);
     });
-    mAddRotate.reset(new CheckBoxItem(tr("necessarily rotate"), this));
-    mAddRotate->setToolTip(tr("Necessarily add a RotateKey if the posture is modified."));
+    mAddRotate.reset(new CheckBoxItem(tr("Always rotate"), this));
+    mAddRotate->setToolTip(tr("Always add a rotation key when modifying the posture."));
     mAddRotate->connect([=](bool aChecked)
     {
         this->mParam.necessarilyRotate = aChecked;
         this->onParamUpdated(false);
     });
-    mAddScale.reset(new CheckBoxItem(tr("necessarily scale"), this));
-    mAddScale->setToolTip(tr("Necessarily add a ScaleKey if the posture is modified."));
+    mAddScale.reset(new CheckBoxItem(tr("Always scale"), this));
+    mAddScale->setToolTip(tr("Always add a scale key when modifying the posture."));
     mAddScale->connect([=](bool aChecked)
     {
         this->mParam.necessarilyScale = aChecked;
         this->onParamUpdated(false);
     });
 
-    mAdjust.reset(new CheckBoxItem(tr("adjust position"), this));
-    mAdjust->setToolTip(tr("Adjust position value so as not to change current posture."));
+    mAdjust.reset(new CheckBoxItem(tr("Adjust position"), this));
+    mAdjust->setToolTip(tr("Adjust the position value so as not to change the current posture."));
     mAdjust->setChecked(mParam.adjustPosition);
     mAdjust->connect([=](bool aChecked)
     {

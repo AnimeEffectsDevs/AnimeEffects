@@ -1,0 +1,76 @@
+#begin_vertex_shader   //---------------------------------------------------------------
+#version 330
+
+in vec4  inPosition;
+in vec2  inTexCoord;
+
+uniform mat4 uViewMatrix;
+uniform vec2 uScreenSize;
+uniform vec2 uImageSize;
+uniform vec2 uTexCoordOffset;
+
+out vec2 vTexCoord;
+out vec2 vDestCoord;
+
+void main(void)
+{
+    vec4 pos = uViewMatrix * inPosition;
+    vec3 screenPos = pos.xyz / pos.w;
+
+    gl_Position = pos;
+    vDestCoord = vec2(uScreenSize.x * (screenPos.x + 1.0) * 0.5, uScreenSize.y * (screenPos.y + 1.0) * 0.5);
+
+    vec2 texCoord = inTexCoord + uTexCoordOffset;
+    vTexCoord = vec2(texCoord.x / uImageSize.x, texCoord.y / uImageSize.y);
+}
+
+
+#begin_fragment_shader //---------------------------------------------------------------
+#version 330
+
+#variation IS_CLIPPEE 0
+
+uniform vec4 uColor;
+uniform int uClipperId;
+uniform sampler2D uTexture;
+uniform usampler2D uDestTexture;
+
+#if IS_CLIPPEE
+uniform int uClippingId;
+#endif
+
+in vec2 vTexCoord;
+in vec2 vDestCoord;
+
+out uvec2 oClip;
+
+void main(void)
+{
+    vec4 color = uColor * texture(uTexture, vTexCoord);
+    ivec2 destCoord = ivec2(vDestCoord);
+    uvec2 destData = texelFetch(uDestTexture, destCoord, 0).xy;
+
+#if IS_CLIPPEE
+    if (uint(uClippingId) == destData.x)
+    {
+        oClip = uvec2(uint(uClipperId), uint(color.a * float(destData.y)));
+    }
+    else if (uint(uClipperId) == destData.x)
+    {
+        oClip = uvec2(uint(uClipperId), min(uint(255), uint(color.a * 255.0) + destData.y));
+    }
+    else
+    {
+        oClip = uvec2(0, 0);
+    }
+#else
+    if (uint(uClipperId) == destData.x)
+    {
+        oClip = uvec2(uint(uClipperId), min(uint(255), uint(color.a * 255.0) + destData.y));
+    }
+    else
+    {
+        oClip = uvec2(uint(uClipperId), uint(color.a * 255.0));
+    }
+#endif
+}

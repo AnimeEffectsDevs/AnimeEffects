@@ -74,7 +74,7 @@ void DeleteMode::removeVtx(MeshVtx& aVtx)
     auto eventType = TimeLineEvent::Type_ChangeKeyValue;
 
     {
-        cmnd::ScopedMacro macro(stack, CmndName::tr("remove a vertex of a mesh key"));
+        cmnd::ScopedMacro macro(stack, CmndName::tr("Remove mesh key vertex"));
         // set notifier
         macro.grabListener(new Notifier(mProject, mTarget, *mKeyOwner.key, eventType));
         // push command
@@ -88,7 +88,7 @@ void DeleteMode::removeFace(MeshFace& aFace)
     auto eventType = TimeLineEvent::Type_ChangeKeyValue;
 
     {
-        cmnd::ScopedMacro macro(stack, CmndName::tr("remove a face of a mesh key"));
+        cmnd::ScopedMacro macro(stack, CmndName::tr("Delete mesh key face"));
         // set notifier
         macro.grabListener(new Notifier(mProject, mTarget, *mKeyOwner.key, eventType));
         // push command

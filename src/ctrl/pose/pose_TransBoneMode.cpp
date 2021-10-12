@@ -117,7 +117,7 @@ void TransBoneMode::rotateBone(Bone2& aTarget, float aRotate)
     }
     else
     {
-        cmnd::ScopedMacro macro(stack, CmndName::tr("rotate a bone of a posing key"));
+        cmnd::ScopedMacro macro(stack, CmndName::tr("Rotate the bones of the pose key."));
 
         // set notifier
         {

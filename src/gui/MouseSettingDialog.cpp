@@ -25,15 +25,15 @@ MouseSettingDialog::MouseSettingDialog(ViaPoint& aViaPoint, QWidget* aParent)
     {
         mInvertMainViewScalingBox = new QCheckBox();
         mInvertMainViewScalingBox->setChecked(mInitialValues.invertMainViewScaling);
-        form->addRow(tr("invert main view scaling :"), mInvertMainViewScalingBox);
+        form->addRow(tr("Invert the scaling of the main view :"), mInvertMainViewScalingBox);
 
         mInvertTimeLineScalingBox = new QCheckBox();
         mInvertTimeLineScalingBox->setChecked(mInitialValues.invertTimeLineScaling);
-        form->addRow(tr("invert timeline scaling :"), mInvertTimeLineScalingBox);
+        form->addRow(tr("Invert the scaling of the timeline :"), mInvertTimeLineScalingBox);
 
         mMiddleMouseMoveCanvas = new QCheckBox();
         mMiddleMouseMoveCanvas->setChecked(mInitialValues.middleMouseMoveCanvas);
-        form->addRow(tr("middle mouse moves canvas :"), mMiddleMouseMoveCanvas);
+        form->addRow(tr("Middle mouse button moves the canvas :"), mMiddleMouseMoveCanvas);
     }
 
     auto group = new QGroupBox(tr("Parameters"));

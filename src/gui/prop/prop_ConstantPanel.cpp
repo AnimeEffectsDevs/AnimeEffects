@@ -39,7 +39,7 @@ ConstantPanel::ConstantPanel(ViaPoint& aViaPoint, core::Project& aProject, const
     , mBlendMode()
     , mClipped()
 {
-    mLabelWidth = this->fontMetrics().boundingRect(tr("MaxTextWidth :")).width();
+    mLabelWidth = this->fontMetrics().boundingRect(tr("Max Text Width :")).width();
 
     build();
     this->hide();
@@ -86,7 +86,7 @@ void ConstantPanel::build()
         {
             assignBlendMode(this->mProject, this->mTarget, (img::BlendMode)aNext);
         };
-        mRenderingAttributes->addItem(tr("blend :"), mBlendMode);
+        mRenderingAttributes->addItem(tr("Blend :"), mBlendMode);
 
         // clipped
         mClipped = new CheckItem(mRenderingAttributes);
@@ -94,7 +94,7 @@ void ConstantPanel::build()
         {
             assignClipped(this->mProject, this->mTarget, aNext);
         };
-        mRenderingAttributes->addItem(tr("clipped :"), mClipped);
+        mRenderingAttributes->addItem(tr("Clipped :"), mClipped);
     }
 
     this->addStretch();
@@ -135,7 +135,7 @@ void ConstantPanel::assignBlendMode(core::Project& aProject, core::ObjectNode* a
     if (!aTarget || !aTarget->renderer()) return; // fail safe code
 
     auto prev = aTarget->renderer()->blendMode();
-    cmnd::ScopedMacro macro(aProject.commandStack(), CmndName::tr("update a blending mode"));
+    cmnd::ScopedMacro macro(aProject.commandStack(), CmndName::tr("Update blend mode"));
     macro.grabListener(new ObjectNodeAttrNotifier(aProject, *aTarget));
 
     auto exec = [=](){ aTarget->renderer()->setBlendMode(aValue); };
@@ -150,7 +150,7 @@ void ConstantPanel::assignClipped(core::Project& aProject, core::ObjectNode* aTa
     if (!aTarget || !aTarget->renderer()) return; // fail safe code
 
     const bool prev = aTarget->renderer()->isClipped();
-    cmnd::ScopedMacro macro(aProject.commandStack(), CmndName::tr("update a clippping flag"));
+    cmnd::ScopedMacro macro(aProject.commandStack(), CmndName::tr("Update clippping settings"));
     macro.grabListener(new ObjectNodeAttrNotifier(aProject, *aTarget));
 
     auto exec = [=](){ aTarget->renderer()->setClipped(aValue); };

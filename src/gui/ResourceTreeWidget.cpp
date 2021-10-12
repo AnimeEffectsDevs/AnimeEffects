@@ -52,19 +52,19 @@ ResourceTreeWidget::ResourceTreeWidget(ViaPoint& aViaPoint, bool aUseCustomConte
         this->connect(this, &QWidget::customContextMenuRequested,
                       this, &ResourceTreeWidget::onContextMenuRequested);
 
-        mChangePathAction = new QAction(tr("change file path"), this);
+        mChangePathAction = new QAction(tr("Change file path"), this);
         mChangePathAction->connect(mChangePathAction, &QAction::triggered,
                                    this, &ResourceTreeWidget::onChangePathActionTriggered);
 
-        mRenameAction = new QAction(tr("rename"), this);
+        mRenameAction = new QAction(tr("Rename"), this);
         mRenameAction->connect(mRenameAction, &QAction::triggered,
                                this, &ResourceTreeWidget::onRenameActionTriggered);
 
-        mReloadAction = new QAction(tr("reload images"), this);
+        mReloadAction = new QAction(tr("Reload images"), this);
         mReloadAction->connect(mReloadAction, &QAction::triggered,
                                this, &ResourceTreeWidget::onReloadActionTriggered);
 
-        mDeleteAction = new QAction(tr("delete"), this);
+        mDeleteAction = new QAction(tr("Delete"), this);
         mDeleteAction->connect(mDeleteAction, &QAction::triggered,
                                this, &ResourceTreeWidget::onDeleteActionTriggered);
     }
@@ -241,7 +241,7 @@ void ResourceTreeWidget::onChangePathActionTriggered(bool)
         if (mHolder)
         {
             auto& stack = mProject->commandStack();
-            cmnd::ScopedMacro macro(stack, CmndName::tr("update a resource file path"));
+            cmnd::ScopedMacro macro(stack, CmndName::tr("Update resource file path"));
 
             // notifier
             auto notifier = new res::ChangeFilePathNotifier(mViaPoint, item->node());
@@ -298,7 +298,7 @@ void ResourceTreeWidget::endRenameEditor()
         if (curName != newName)
         {
             auto& stack = mProject->commandStack();
-            cmnd::ScopedMacro macro(stack, CmndName::tr("rename a resource"));
+            cmnd::ScopedMacro macro(stack, CmndName::tr("Rename the resource"));
 
             // notifier
             auto notifier = new res::RenameNotifier(mViaPoint, *mProject, item->treePos());

@@ -38,7 +38,7 @@ bool PoseEditor::setTarget(core::ObjectNode* aTarget)
 
     if (!message.isEmpty())
     {
-        mUILogger.pushLog(UILog::tr("PoseEditor : ") + message, UILogType_Warn);
+        mUILogger.pushLog(UILog::tr("Pose Editor : ") + message, UILogType_Warn);
     }
 
     return mTarget && mKeyOwner;
@@ -117,7 +117,7 @@ void PoseEditor::resetCurrentTarget(QString* aMessage)
             mTarget.node = nullptr;
             if (aMessage)
             {
-                *aMessage = UILog::tr("The object which has an invalid posture was given.");
+                *aMessage = UILog::tr("An object with an invalid pose has been given");
             }
         }
     }
@@ -152,7 +152,7 @@ void PoseEditor::resetCurrentTarget(QString* aMessage)
         {
             if (aMessage)
             {
-                *aMessage = UILog::tr("There is no bone key which can be a parent.");
+                *aMessage = UILog::tr("There is no parent bone key");
             }
         }
     }

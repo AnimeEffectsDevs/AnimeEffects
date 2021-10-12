@@ -36,7 +36,7 @@ void TimeLineInfoWidget::onUpdate()
         QString frameNumber = timeFormat.frameToString(currentFrame, formatType);
         QString frameMaxNumber = timeFormat.frameToString(frameMax, formatType);
 
-        this->setText(frameNumber.rightJustified(frameMaxNumber.length()+1, ' ')+" / "+frameMaxNumber+" @"+QString::number(fps)+" "+tr("fps"));
+        this->setText(frameNumber.rightJustified(frameMaxNumber.length()+1, ' ')+" / "+frameMaxNumber+" @"+QString::number(fps)+" "+tr("FPS"));
     }
 }
 

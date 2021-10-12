@@ -3,7 +3,6 @@
 
 #include <QScrollArea>
 #include <QTreeWidgetItem>
-#include <QElapsedTimer>
 #include <QTimer>
 #include <QTime>
 #include <QScopedPointer>

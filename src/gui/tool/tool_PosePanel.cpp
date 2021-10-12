@@ -48,7 +48,7 @@ void PosePanel::createMode()
     static const int kScale = 100;
 
     // drawing pressure
-    mDIWeight.reset(new SliderItem(tr("weight"), this->palette(), this));
+    mDIWeight.reset(new SliderItem(tr("Weight"), this->palette(), this));
     mDIWeight->setAttribute(util::Range(0, kScale), mParam.diWeight * kScale, kScale / 10);
     mDIWeight->connectOnMoved([=](int aValue)
     {
@@ -56,7 +56,7 @@ void PosePanel::createMode()
         this->onParamUpdated(false);
     });
     // eraser radius
-    mEIRadius.reset(new SliderItem(tr("radius"), this->palette(), this));
+    mEIRadius.reset(new SliderItem(tr("Radius"), this->palette(), this));
     mEIRadius->setAttribute(util::Range(5, 1000), mParam.eiRadius, 50);
     mEIRadius->connectOnChanged([=](int aValue)
     {
@@ -65,7 +65,7 @@ void PosePanel::createMode()
     });
 
     // eraser pressure
-    mEIPressure.reset(new SliderItem(tr("pressure"), this->palette(), this));
+    mEIPressure.reset(new SliderItem(tr("Pressure"), this->palette(), this));
     mEIPressure->setAttribute(util::Range(0, kScale), mParam.eiPressure * kScale, kScale / 10);
     mEIPressure->connectOnMoved([=](int aValue)
     {

@@ -69,7 +69,7 @@ void DeleteMode::deleteBone(Bone2& aBone)
     cmnd::Stack& stack = mProject.commandStack();
     BoneKey& key = *mKeyOwner.key;
 
-    cmnd::ScopedMacro macro(stack, CmndName::tr("delete a bone"));
+    cmnd::ScopedMacro macro(stack, CmndName::tr("Delete a bone"));
 
     // set notifier
     macro.grabListener(new Notifier(mProject, mTarget, key, TimeLineEvent::Type_ChangeKeyValue));

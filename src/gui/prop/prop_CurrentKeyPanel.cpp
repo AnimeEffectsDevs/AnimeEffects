@@ -31,7 +31,7 @@ MoveKeyGroup::MoveKeyGroup(Panel& aPanel, KeyAccessor& aAccessor, int aLabelWidt
 
         // easing
         mEasing = new EasingItem(this);
-        this->addItem(tr("easing :"), mEasing);
+        this->addItem(tr("Easing :"), mEasing);
         mEasing->onValueUpdated = [=](util::Easing::Param, util::Easing::Param aNext)
         {
             this->mAccessor.assignMoveEasing(aNext);
@@ -45,7 +45,7 @@ MoveKeyGroup::MoveKeyGroup(Panel& aPanel, KeyAccessor& aAccessor, int aLabelWidt
         {
             this->mAccessor.assignMoveSpline(aNext);
         };
-        this->addItem(tr("spline :"), mSpline);
+        this->addItem(tr("Spline :"), mSpline);
 
         // position
         mPosition = new Vector2DItem(this);
@@ -54,7 +54,7 @@ MoveKeyGroup::MoveKeyGroup(Panel& aPanel, KeyAccessor& aAccessor, int aLabelWidt
         {
             this->mAccessor.assignMovePosition(aNext);
         };
-        this->addItem(tr("position :"), mPosition);
+        this->addItem(tr("Position :"), mPosition);
 
         // centroid
         mCentroid = new Vector2DItem(this);
@@ -63,7 +63,7 @@ MoveKeyGroup::MoveKeyGroup(Panel& aPanel, KeyAccessor& aAccessor, int aLabelWidt
         {
             this->mAccessor.assignMoveCentroid(aNext);
         };
-        this->addItem(tr("centroid :"), mCentroid);
+        this->addItem(tr("Centroid :"), mCentroid);
     }
     setKeyEnabled(false);
     setKeyExists(false);
@@ -116,7 +116,7 @@ RotateKeyGroup::RotateKeyGroup(Panel& aPanel, KeyAccessor& aAccessor, int aLabel
 
         // easing
         mEasing = new EasingItem(this);
-        this->addItem(tr("easing :"), mEasing);
+        this->addItem(tr("Easing :"), mEasing);
         mEasing->onValueUpdated = [=](util::Easing::Param, util::Easing::Param aNext)
         {
             this->mAccessor.assignRotateEasing(aNext);
@@ -130,7 +130,7 @@ RotateKeyGroup::RotateKeyGroup(Panel& aPanel, KeyAccessor& aAccessor, int aLabel
         {
             this->mAccessor.assignRotateAngle(MathUtil::getRadianFromDegree(aNext));
         };
-        this->addItem(tr("angle :"), mRotate);
+        this->addItem(tr("Angle :"), mRotate);
     }
     setKeyEnabled(false);
     setKeyExists(false);
@@ -180,7 +180,7 @@ ScaleKeyGroup::ScaleKeyGroup(Panel& aPanel, KeyAccessor& aAccessor, int aLabelWi
 
         // easing
         mEasing = new EasingItem(this);
-        this->addItem(tr("easing :"), mEasing);
+        this->addItem(tr("Easing :"), mEasing);
         mEasing->onValueUpdated = [=](util::Easing::Param, util::Easing::Param aNext)
         {
             this->mAccessor.assignScaleEasing(aNext);
@@ -193,7 +193,7 @@ ScaleKeyGroup::ScaleKeyGroup(Panel& aPanel, KeyAccessor& aAccessor, int aLabelWi
         {
             this->mAccessor.assignScaleRate(aNext);
         };
-        this->addItem(tr("rate :"), mScale);
+        this->addItem(tr("Rate :"), mScale);
     }
     setKeyEnabled(false);
     setKeyExists(false);
@@ -243,7 +243,7 @@ DepthKeyGroup::DepthKeyGroup(Panel& aPanel, KeyAccessor& aAccessor, int aLabelWi
 
         // easing
         mEasing = new EasingItem(this);
-        this->addItem(tr("easing :"), mEasing);
+        this->addItem(tr("Easing :"), mEasing);
         mEasing->onValueUpdated = [=](util::Easing::Param, util::Easing::Param aNext)
         {
             this->mAccessor.assignDepthEasing(aNext);
@@ -256,7 +256,7 @@ DepthKeyGroup::DepthKeyGroup(Panel& aPanel, KeyAccessor& aAccessor, int aLabelWi
         {
             this->mAccessor.assignDepthPosition(aNext);
         };
-        this->addItem(tr("position :"), mDepth);
+        this->addItem(tr("Position :"), mDepth);
     }
     setKeyEnabled(false);
     setKeyExists(false);
@@ -306,7 +306,7 @@ OpaKeyGroup::OpaKeyGroup(Panel& aPanel, KeyAccessor& aAccessor, int aLabelWidth)
 
         // easing
         mEasing = new EasingItem(this);
-        this->addItem(tr("easing :"), mEasing);
+        this->addItem(tr("Easing :"), mEasing);
         mEasing->onValueUpdated = [=](util::Easing::Param, util::Easing::Param aNext)
         {
             this->mAccessor.assignOpaEasing(aNext);
@@ -320,7 +320,7 @@ OpaKeyGroup::OpaKeyGroup(Panel& aPanel, KeyAccessor& aAccessor, int aLabelWidth)
         {
             this->mAccessor.assignOpacity(aNext);
         };
-        this->addItem(tr("rate :"), mOpacity);
+        this->addItem(tr("Rate :"), mOpacity);
     }
     setKeyEnabled(false);
     setKeyExists(false);
@@ -369,7 +369,7 @@ PoseKeyGroup::PoseKeyGroup(Panel& aPanel, KeyAccessor& aAccessor, int aLabelWidt
 
         // easing
         mEasing = new EasingItem(this);
-        this->addItem(tr("easing :"), mEasing);
+        this->addItem(tr("Easing :"), mEasing);
         mEasing->onValueUpdated = [=](util::Easing::Param, util::Easing::Param aNext)
         {
             this->mAccessor.assignPoseEasing(aNext);
@@ -421,7 +421,7 @@ FFDKeyGroup::FFDKeyGroup(Panel& aPanel, KeyAccessor& aAccessor, int aLabelWidth)
 
         // easing
         mEasing = new EasingItem(this);
-        this->addItem(tr("easing :"), mEasing);
+        this->addItem(tr("Easing :"), mEasing);
         mEasing->onValueUpdated = [=](util::Easing::Param, util::Easing::Param aNext)
         {
             this->mAccessor.assignFFDEasing(aNext);
@@ -486,7 +486,7 @@ ImageKeyGroup::ImageKeyGroup(Panel& aPanel, KeyAccessor& aAccessor,
                 this->mAccessor.assignImageResource(*resNode);
             }
         };
-        this->addItem(tr("resource :"), mBrowse);
+        this->addItem(tr("Resource :"), mBrowse);
 
         // offset
         mOffset = new Vector2DItem(this);
@@ -495,7 +495,7 @@ ImageKeyGroup::ImageKeyGroup(Panel& aPanel, KeyAccessor& aAccessor,
         {
             this->mAccessor.assignImageOffset(-aNext);
         };
-        this->addItem(tr("center :"), mOffset);
+        this->addItem(tr("Center :"), mOffset);
 
         // cell size
         mCellSize = new IntegerItem(this);
@@ -505,7 +505,7 @@ ImageKeyGroup::ImageKeyGroup(Panel& aPanel, KeyAccessor& aAccessor,
         {
             this->mAccessor.assignImageCellSize(aNext);
         };
-        this->addItem(tr("mesh cell :"), mCellSize);
+        this->addItem(tr("Mesh cell :"), mCellSize);
     }
     setKeyEnabled(false);
     setKeyExists(false, false);
@@ -565,7 +565,7 @@ CurrentKeyPanel::CurrentKeyPanel(ViaPoint& aViaPoint, core::Project& aProject, c
     , mImagePanel()
 {
     mKeyAccessor.setProject(&aProject);
-    mLabelWidth = this->fontMetrics().boundingRect(tr("MaxTextWidth :")).width();
+    mLabelWidth = this->fontMetrics().boundingRect(tr("Max Text Width :")).width();
 
     build();
     this->hide();

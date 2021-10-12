@@ -1,0 +1,17 @@
+CREATE libutil.a
+ADDMOD .obj\CollDetect.o
+ADDMOD .obj\MathUtil.o
+ADDMOD .obj\TextUtil.o
+ADDMOD .obj\TreePos.o
+ADDMOD .obj\PackBits.o
+ADDMOD .obj\TreeUtil.o
+ADDMOD .obj\Triangle2D.o
+ADDMOD .obj\IndexTable.o
+ADDMOD .obj\Triangle2DPos.o
+ADDMOD .obj\Dir4.o
+ADDMOD .obj\Easing.o
+ADDMOD .obj\TriangleRasterizer.o
+ADDMOD .obj\ByteBuffer.o
+ADDMOD .obj\EasingName.o
+ADDMOD .obj\moc_EasingName.o
+SAVE

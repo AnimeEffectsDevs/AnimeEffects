@@ -97,7 +97,7 @@ void MoveJointMode::moveBone(core::Bone2& aTarget, const QVector2D& aMove)
     }
     else
     {
-        cmnd::ScopedMacro macro(stack, CmndName::tr("move a bone"));
+        cmnd::ScopedMacro macro(stack, CmndName::tr("Move a bone"));
         macro.grabListener(new Notifier(mProject, mTarget, *mKeyOwner.key, eventType));
 
         // push command

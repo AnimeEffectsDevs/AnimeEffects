@@ -1,0 +1,3 @@
+- Spacebar should start/stop playback
+- Tab should hide all docks
+- Keybindings should work out of order

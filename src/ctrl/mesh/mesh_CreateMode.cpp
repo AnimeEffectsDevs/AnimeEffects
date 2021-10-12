@@ -90,7 +90,7 @@ MeshFace* CreateMode::pushTriangle(
 
     MeshFace* faceCreated = nullptr;
     {
-        cmnd::ScopedMacro macro(stack, CmndName::tr("push a triangle of a mesh key"));
+        cmnd::ScopedMacro macro(stack, CmndName::tr("Add a triangle to the mesh key"));  // You could also translate it as "Add mesh key triangle" (メッシュキーの三角形を追加)
         // set notifier
         macro.grabListener(new Notifier(mProject, mTarget, *mKeyOwner.key, eventType));
 
@@ -127,7 +127,7 @@ void CreateMode::moveVtx(MeshVtx& aVtx, const QVector2D& aPos)
     }
     else
     {
-        cmnd::ScopedMacro macro(stack, CmndName::tr("move a vertex of a mesh key"));
+        cmnd::ScopedMacro macro(stack, CmndName::tr("Move mesh key vertex"));
         macro.grabListener(new Notifier(mProject, mTarget, *mKeyOwner.key, eventType));
 
         mMoverRef = new VtxMover(*mKeyOwner.key, aVtx, aPos);
