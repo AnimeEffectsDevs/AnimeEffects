@@ -1,6 +1,5 @@
 #include "TextUtil.h"
 #include "XC.h"
-#include <QtTextCodec>
 
 namespace util
 {
