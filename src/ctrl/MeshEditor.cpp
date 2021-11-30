@@ -33,12 +33,12 @@ bool MeshEditor::setTarget(core::ObjectNode* aTarget)
 
     if (!aTarget || !aTarget->timeLine()) return false;
 
-    auto group = UILog::tr("MeshEditor : ");
+    auto group = UILog::tr("Mesh Editor : ");
 
     // for layer only
     if (aTarget->type() != ObjectType_Layer)
     {
-        mUILogger.pushLog(group + UILog::tr("The object can't own a mesh key."), UILogType_Info);
+        mUILogger.pushLog(group + UILog::tr("The current object cannot have a mesh"), UILogType_Info);
         return false;
     }
 
@@ -121,7 +121,7 @@ void MeshEditor::resetTarget(ObjectNode* aPrev, ObjectNode* aNext, QString* aMes
             mTarget.node = nullptr;
             if (aMessage)
             {
-                *aMessage = UILog::tr("The object which has an invalid posture was given.");
+                *aMessage = UILog::tr("An object with an invalid pose has been given");
             }
         }
     }

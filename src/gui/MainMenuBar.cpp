@@ -133,7 +133,7 @@ MainMenuBar::MainMenuBar(MainWindow& aMainWindow, ViaPoint& aViaPoint, GUIResour
     QMenu* projMenu = new QMenu(tr("Project"), this);
     {
         QAction* canvSize = new QAction(tr("Canvas Size..."), this);
-        QAction* maxFrame = new QAction(tr("Max Frame..."), this);
+        QAction* maxFrame = new QAction(tr("Maximum Frames..."), this);
         QAction* loopAnim = new QAction(tr("Loop..."), this);
 
         mProjectActions.push_back(canvSize);
@@ -210,12 +210,18 @@ MainMenuBar::MainMenuBar(MainWindow& aMainWindow, ViaPoint& aViaPoint, GUIResour
         connect(aboutMe, &QAction::triggered, [=]()
         {
             QMessageBox msgBox;
-            msgBox.setIcon(QMessageBox::Information);
+            msgBox.setIconPixmap(QPixmap("../src/hidefuku.png"));
+
             auto versionString = QString::number(AE_MAJOR_VERSION) + "." + QString::number(AE_MINOR_VERSION) + "." + QString::number(AE_MICRO_VERSION);
             auto formatVersionString = QString::number(AE_PROJECT_FORMAT_MAJOR_VERSION) + "." + QString::number(AE_PROJECT_FORMAT_MINOR_VERSION);
             auto platform = QSysInfo::productType();
-            msgBox.setText(QString("AnimeEffects for ") + platform + " version " + versionString);
-
+            auto toUp = platform[0].toUpper(); // First letter capitalization :D
+            platform[0] = toUp;
+            QString msgStr = "### AnimeEffects for " + platform + " version " + versionString + "<br />" + "Original code and artwork by [Hidefuku](https://github.com/hidefuku).<br />Current development handled by the [AnimeEffectsDevs](https://github.com/AnimeEffectsDevs).";
+            QByteArray msgArr = msgStr.toLocal8Bit();
+            const char *msg_char = msgArr.data();  // Quite a pain to just transform a string to what is essentially another string ;)
+            msgBox.setText(QString(tr(msg_char))); // Still won't let me translate it :T
+            msgBox.setTextFormat(Qt::TextFormat::MarkdownText);
             QString detail;
             detail += "Version: " + versionString + "\n";
             detail += "Platform: " + platform + " " + QSysInfo::productVersion() + "\n";
@@ -223,11 +229,10 @@ MainMenuBar::MainMenuBar(MainWindow& aMainWindow, ViaPoint& aViaPoint, GUIResour
             detail += "Build CPU: " + QSysInfo::buildCpuArchitecture() + "\n";
             detail += "Current CPU: " + QSysInfo::currentCpuArchitecture() + "\n";
             detail += "Current GPU: " + QString(this->mViaPoint.glDeviceInfo().renderer.c_str()) + "\n";
-            detail += "GPU Vender: " + QString(this->mViaPoint.glDeviceInfo().vender.c_str()) + "\n";
+            detail += "GPU Vendor: " + QString(this->mViaPoint.glDeviceInfo().vender.c_str()) + "\n";
             detail += "OpenGL Version: " + QString(this->mViaPoint.glDeviceInfo().version.c_str()) + "\n";
             detail += "Format Version: " + formatVersionString + "\n";
             msgBox.setDetailedText(detail);
-
             msgBox.setStandardButtons(QMessageBox::Ok);
             msgBox.setDefaultButton(QMessageBox::Ok);
             msgBox.exec();
@@ -366,7 +371,7 @@ ProjectCanvasSizeSettingDialog::ProjectCanvasSizeSettingDialog(
             mHeightBox->setValue(curSize.height());
             sizeLayout->addWidget(mHeightBox);
         }
-        form->addRow(tr("size :"), sizeLayout);
+        form->addRow(tr("Size :"), sizeLayout);
 
         auto group = new QGroupBox(tr("Parameters"));
         group->setLayout(form);
@@ -398,7 +403,7 @@ void MainMenuBar::onCanvasSizeTriggered()
     // create commands
     {
         cmnd::ScopedMacro macro(mProject->commandStack(),
-                                CmndName::tr("change the canvas size"));
+                                CmndName::tr("Change the canvas size"));
 
         core::Project* projectPtr = mProject;
         auto command = new cmnd::Delegatable([=]()
@@ -423,7 +428,7 @@ void MainMenuBar::onCanvasSizeTriggered()
 
 //-------------------------------------------------------------------------------------------------
 ProjectMaxFrameSettingDialog::ProjectMaxFrameSettingDialog(core::Project& aProject, QWidget *aParent)
-    : EasyDialog(tr("Set Max Frame"), aParent)
+    : EasyDialog(tr("Max. Frame Settings"), aParent)
     , mProject(aProject)
     , mMaxFrameBox()
 {
@@ -441,7 +446,7 @@ ProjectMaxFrameSettingDialog::ProjectMaxFrameSettingDialog(core::Project& aProje
             mMaxFrameBox->setValue(curMaxFrame);
             layout->addWidget(mMaxFrameBox);
         }
-        form->addRow(tr("max frame :"), layout);
+        form->addRow(tr("Max. frame :"), layout);
 
         auto group = new QGroupBox(tr("Parameters"));
         group->setLayout(form);
@@ -472,8 +477,8 @@ bool ProjectMaxFrameSettingDialog::confirmMaxFrameUpdating(int aNewMaxFrame) con
         return true;
     }
 
-    auto message1 = tr("Can not set the specified frame.");
-    auto message2 = tr("There are some keys that exeeding the specified frame.");
+    auto message1 = tr("Can't set the specified frame.");
+    auto message2 = tr("A key exceeds the specified frame value.");
     QMessageBox::warning(nullptr, tr("Operation Error"), message1 + "\n" + message2);
     return false;
 }
@@ -500,7 +505,7 @@ void MainMenuBar::onMaxFrameTriggered()
     // create commands
     {
         cmnd::ScopedMacro macro(mProject->commandStack(),
-                                CmndName::tr("change the max frame"));
+                                CmndName::tr("Change the maximum frames"));
 
         core::Project* projectPtr = mProject;
         auto command = new cmnd::Delegatable([=]()
@@ -540,7 +545,7 @@ ProjectLoopSettingDialog::ProjectLoopSettingDialog(core::Project& aProject, QWid
             mLoopBox->setChecked(curLoop);
             layout->addWidget(mLoopBox);
         }
-        form->addRow(tr("loop animation :"), layout);
+        form->addRow(tr("Loop animation :"), layout);
 
         auto group = new QGroupBox(tr("Parameters"));
         group->setLayout(form);
@@ -571,7 +576,7 @@ void MainMenuBar::onLoopTriggered()
     // create commands
     {
         cmnd::ScopedMacro macro(mProject->commandStack(),
-                                CmndName::tr("change the animation loop setting"));
+                                CmndName::tr("Change loop settings"));
 
         core::Project* projectPtr = mProject;
         auto command = new cmnd::Delegatable([=]()

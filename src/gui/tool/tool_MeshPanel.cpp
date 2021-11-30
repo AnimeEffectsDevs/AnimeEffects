@@ -16,7 +16,7 @@ MeshPanel::MeshPanel(QWidget* aParent, GUIResources& aResources)
     , mParam()
     , mTypeGroup()
 {
-    this->setTitle(tr("MeshCreating"));
+    this->setTitle(tr("Mesh Construction"));
     createMode();
 }
 

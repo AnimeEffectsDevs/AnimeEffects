@@ -58,7 +58,7 @@ KeyCommandMap::KeyCommandMap(QWidget& aParent)
 	addNewKey("RotateCanvas15Clockwise", view, tr("Rotate canvas 15° clockwise"),
 			  ctrl::KeyBinding(Qt::Key_6, Qt::KeypadModifier));
 
-	addNewKey("RotateCanvas15AntiClockwise", view, tr("Rotate canvas 15° anti clockwise"),
+    addNewKey("RotateCanvas15AntiClockwise", view, tr("Rotate canvas 15° counterclockwise"),
 			  ctrl::KeyBinding(Qt::Key_4, Qt::KeypadModifier));
 
     addNewKey("ResetCanvasAngle", view, tr("Reset canvas angle"),

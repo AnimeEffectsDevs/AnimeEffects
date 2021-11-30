@@ -188,7 +188,7 @@ void EraseInflMode::assignInfluence(
     }
     else
     {
-        cmnd::ScopedMacro macro(stack, CmndName::tr("update influence of a bone"));
+        cmnd::ScopedMacro macro(stack, CmndName::tr("Update bone influence"));
         macro.grabListener(new Notifier(mProject, mTarget, *mKeyOwner.key, eventType));
 
         // push command

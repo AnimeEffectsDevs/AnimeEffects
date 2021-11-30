@@ -216,7 +216,7 @@ void DragMode::assignDragging(const QVector2D& aMove)
 
     if (!mCommandRef || !stack.isModifiable(mCommandRef))
     {
-        cmnd::ScopedMacro macro(stack, CmndName::tr("move a vertex of a FFD key"));
+        cmnd::ScopedMacro macro(stack, CmndName::tr("Move the vertices of the FFD key"));
 
         // set notifier
         auto notifier = new TimeLineUtil::Notifier(mProject);

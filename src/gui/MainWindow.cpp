@@ -539,12 +539,12 @@ int MainWindow::confirmProjectClosing(bool aCurrentOnly)
     }
     else
     {
-        msgBox.setText(tr("Some projects have been modified. Save changes?"));
+        msgBox.setText(tr("Some of the projects have been modified. Save changes?"));
     }
 
     msgBox.addButton(tr("Save Changes"), QMessageBox::YesRole);
     msgBox.addButton(tr("Discard Changes"), QMessageBox::NoRole);
-    auto cancel = msgBox.addButton(tr("Cancel Closing"), QMessageBox::RejectRole);
+    auto cancel = msgBox.addButton(tr("Cancel"), QMessageBox::RejectRole);  // 'Cancel closing' seems unnecesary to me.
     msgBox.setDefaultButton(cancel);
     msgBox.exec();
     auto clicked = msgBox.clickedButton();
@@ -764,7 +764,7 @@ void MainWindow::onExportImageSeqTriggered(const QString& aSuffix)
     EventSuspender suspender(*mMainDisplay, *mTarget);
 
     // export directory
-    QString dirName = QFileDialog::getExistingDirectory(this, tr("Export Folder"));
+    QString dirName = QFileDialog::getExistingDirectory(this, tr("Export Directory"));
 
     // make sure existing
     if (dirName.isEmpty()) return;
@@ -900,7 +900,7 @@ void MainWindow::onExportVideoTriggered(const ctrl::VideoFormat& aFormat)
             auto infoText =
                     tr("Video export requires FFmpeg.") + "\n" +
                     tr("Install FFmpeg on the system, or place a FFmpeg executable "
-                       "under /tools of the folder you expanded AnimeEffects.");
+                       "under \"/tools\" in the folder where you extracted AnimeEffects.");
             message.setInformativeText(infoText);
             message.setStandardButtons(QMessageBox::Ok);
             message.setDefaultButton(QMessageBox::Ok);

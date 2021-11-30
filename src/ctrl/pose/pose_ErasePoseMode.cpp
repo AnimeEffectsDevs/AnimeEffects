@@ -98,7 +98,7 @@ void ErasePoseMode::updatePaint()
     }
     else
     {
-        cmnd::ScopedMacro macro(stack, CmndName::tr("erase a pose"));
+        cmnd::ScopedMacro macro(stack, CmndName::tr("Erase pose"));
 
         // set notifier
         {

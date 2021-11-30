@@ -80,7 +80,7 @@ bool SRTEditor::initializeKey(TimeLine& aLine, QString* aMessage)
         mKeyOwner.deleteOwningKeys();
         if (aMessage)
         {
-            *aMessage = UILog::tr("The object which has an invalid posture was given.");
+            *aMessage = UILog::tr("An object with an invalid pose has been given");
         }
         return false;
     }
@@ -138,7 +138,7 @@ bool SRTEditor::setTarget(ObjectNode* aTarget)
             mTarget = nullptr;
             if (!message.isEmpty())
             {
-                mUILogger.pushLog(UILog::tr("SRTEditor : ") + message, UILogType_Warn);
+                mUILogger.pushLog(UILog::tr("SRT Editor : ") + message, UILogType_Warn);
             }
         }
     }

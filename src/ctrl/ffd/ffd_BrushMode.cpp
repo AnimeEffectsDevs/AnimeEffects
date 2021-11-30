@@ -160,7 +160,7 @@ bool BrushMode::executeDrawTask(const QVector2D& aCenter, const QVector2D& aMove
 
         if (!mStatus.commandRef)
         {
-            cmnd::ScopedMacro macro(stack, CmndName::tr("update FFD"));
+            cmnd::ScopedMacro macro(stack, CmndName::tr("Update FFD"));
 
             // set notifier
             auto notifier = new TimeLineUtil::Notifier(mProject);

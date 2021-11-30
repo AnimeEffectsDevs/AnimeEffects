@@ -180,7 +180,7 @@ MeshVtx* SplitMode::splitTriangle()
 
     MeshVtx* tailVtx = nullptr;
     {
-        cmnd::ScopedMacro macro(stack, CmndName::tr("split a triangle of a mesh key"));
+        cmnd::ScopedMacro macro(stack, CmndName::tr("Split mesh key triangle"));
         // set notifier
         macro.grabListener(new Notifier(mProject, mTarget, *mKeyOwner.key, eventType));
         // push command

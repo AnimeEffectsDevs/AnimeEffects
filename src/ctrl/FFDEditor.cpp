@@ -194,7 +194,7 @@ bool FFDEditor::setTarget(ObjectNode* aTarget)
             mRootTarget = nullptr;
             if (!message.isEmpty())
             {
-                mUILogger.pushLog(UILog::tr("FFDEditor : ") + message, UILogType_Warn);
+                mUILogger.pushLog(UILog::tr("FFD Editor : ") + message, UILogType_Warn);
             }
         }
     }
@@ -290,7 +290,7 @@ bool FFDEditor::resetCurrentTarget(QString* aMessage)
     }
     else if (aMessage)
     {
-        *aMessage = UILog::tr("There is no object which has meshes.");
+        *aMessage = UILog::tr("There are no objects with meshes");
     }
 
     return !mTargets.isEmpty();
