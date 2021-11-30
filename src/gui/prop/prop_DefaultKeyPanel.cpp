@@ -27,7 +27,7 @@ DefaultDepthGroup::DefaultDepthGroup(Panel& aPanel, KeyAccessor& aAccessor, int 
         {
             this->mAccessor.assignDefaultDepth(aNext);
         };
-        this->addItem(tr("position :"), mDepth);
+        this->addItem(tr("Position :"), mDepth);
     }
     this->setEnabled(false);
 }
@@ -58,7 +58,7 @@ DefaultOpaGroup::DefaultOpaGroup(Panel& aPanel, KeyAccessor& aAccessor, int aLab
         {
             this->mAccessor.assignDefaultOpacity(aNext);
         };
-        this->addItem(tr("rate :"), mOpacity);
+        this->addItem(tr("Rate :"), mOpacity);
     }
     this->setEnabled(false);
 }
@@ -98,7 +98,7 @@ DefaultImageGroup::DefaultImageGroup(
                 this->mAccessor.assignDefaultImageResource(*resNode);
             }
         };
-        this->addItem(tr("resource :"), mBrowse);
+        this->addItem(tr("Resource :"), mBrowse);
 
         // offset
         mOffset = new Vector2DItem(this);
@@ -107,7 +107,7 @@ DefaultImageGroup::DefaultImageGroup(
         {
             this->mAccessor.assignDefaultImageOffset(-aNext);
         };
-        this->addItem(tr("center :"), mOffset);
+        this->addItem(tr("Center :"), mOffset);
 
         // cell size
         mCellSize = new IntegerItem(this);
@@ -117,7 +117,7 @@ DefaultImageGroup::DefaultImageGroup(
         {
             this->mAccessor.assignDefaultImageCellSize(aNext);
         };
-        this->addItem(tr("mesh cell :"), mCellSize);
+        this->addItem(tr("Mesh cell :"), mCellSize);
     }
     setEnabled(false);
 }

@@ -85,7 +85,7 @@ void BindNodesMode::bindNode(Bone2& aBone, ObjectNode& aNode)
 
     cmnd::Stack& stack = mProject.commandStack();
     {
-        cmnd::ScopedMacro macro(stack, CmndName::tr("bind a object to a bone"));
+        cmnd::ScopedMacro macro(stack, CmndName::tr("Bind an object to a bone"));
         macro.grabListener(new Notifier(mProject, mTarget, *mKeyOwner.key,
                                         TimeLineEvent::Type_ChangeKeyValue));
 
@@ -98,7 +98,7 @@ void BindNodesMode::unbindNode(ObjectNode& aNode)
     XC_ASSERT(!mKeyOwner.owns());
 
     typedef std::pair<Bone2*, ObjectNode*> BindPair;
-    QList<BindPair> pairs;
+    QVector<BindPair> pairs;
     for (auto topBone : mKeyOwner.key->data().topBones())
     {
         Bone2::Iterator itr(topBone);
@@ -113,7 +113,7 @@ void BindNodesMode::unbindNode(ObjectNode& aNode)
     }
 
     cmnd::Stack& stack = mProject.commandStack();
-    cmnd::ScopedMacro macro(stack, CmndName::tr("unbind a object from bones"));
+    cmnd::ScopedMacro macro(stack, CmndName::tr("Unbind an object from a bone"));
     macro.grabListener(new Notifier(mProject, mTarget, *mKeyOwner.key,
                                     TimeLineEvent::Type_ChangeKeyValue));
 

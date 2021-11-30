@@ -57,7 +57,7 @@ QWidget* NewProjectDialog::createOption()
         button->setFocusPolicy(Qt::NoFocus);
         layout->addWidget(button);
 
-        form->addRow(tr("initial resource :"), layout);
+        form->addRow(tr("Initial resource :"), layout);
     }
 
     // frame
@@ -71,7 +71,7 @@ QWidget* NewProjectDialog::createOption()
             this->mAttribute.setMaxFrame(frame->value());
         });
 
-        form->addRow(tr("max frame :"), frame);
+        form->addRow(tr("Max. number of frames :"), frame);
     }
 
     // canvas size
@@ -104,9 +104,9 @@ QWidget* NewProjectDialog::createOption()
             height->setEnabled(aChecked);
         });
 
-        form->addRow(tr("specify canvas size :"), check);
-        form->addRow(tr("canvas width :"), width);
-        form->addRow(tr("canvas height :"), height);
+        form->addRow(tr("Specify canvas size :"), check);
+        form->addRow(tr("Canvas width :"), width);
+        form->addRow(tr("Canvas height :"), height);
     }
 
     auto group = new QGroupBox(tr("Parameters"));

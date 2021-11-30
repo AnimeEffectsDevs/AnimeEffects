@@ -95,13 +95,13 @@ TimeLineEditorWidget::TimeLineEditorWidget(ViaPoint& aViaPoint, QWidget* aParent
                 this, &TimeLineEditorWidget::onContextMenuRequested);
 
     {
-        mCopyKey = new QAction(tr("copy key"), this);
+        mCopyKey = new QAction(tr("Copy key"), this);
         mCopyKey->connect(mCopyKey, &QAction::triggered, this, &TimeLineEditorWidget::onCopyKeyTriggered);
 
-        mPasteKey = new QAction(tr("paste key"), this);
+        mPasteKey = new QAction(tr("Paste key"), this);
         mPasteKey->connect(mPasteKey, &QAction::triggered, this, &TimeLineEditorWidget::onPasteKeyTriggered);
 
-        mDeleteKey = new QAction(tr("delete key"), this);
+        mDeleteKey = new QAction(tr("Delete key"), this);
         mDeleteKey->connect(mDeleteKey, &QAction::triggered, this, &TimeLineEditorWidget::onDeleteKeyTriggered);
     }
 }

@@ -206,7 +206,7 @@ void MoveMode::assignMoveKey(MoveKey::Data& aNewData)
     }
     else
     {
-        cmnd::ScopedMacro macro(stack, CmndName::tr("update a moving key"));
+        cmnd::ScopedMacro macro(stack, CmndName::tr("Update move key"));
         setAssignNotifier(macro, TimeKeyType_Move, mKeyOwner.ownsMoveKey || appendKeys);
         // push commands
         mKeyOwner.pushOwningMoveKey(stack, timeLine, frame);
@@ -244,7 +244,7 @@ void MoveMode::assignRotateKey(RotateKey::Data& aNewData)
     }
     else
     {
-        cmnd::ScopedMacro macro(stack, CmndName::tr("update a rotation key"));
+        cmnd::ScopedMacro macro(stack, CmndName::tr("Update rotation key"));
         setAssignNotifier(macro, TimeKeyType_Rotate, mKeyOwner.ownsRotateKey || appendKeys);
         // push commands
         mKeyOwner.pushOwningRotateKey(stack, timeLine, frame);
@@ -282,7 +282,7 @@ void MoveMode::assignScaleKey(ScaleKey::Data& aNewData)
     }
     else
     {
-        cmnd::ScopedMacro macro(stack, CmndName::tr("update a scaling key"));
+        cmnd::ScopedMacro macro(stack, CmndName::tr("Update scaling key"));
         setAssignNotifier(macro, TimeKeyType_Scale, mKeyOwner.ownsScaleKey || appendKeys);
         // push commands
         mKeyOwner.pushOwningScaleKey(stack, timeLine, frame);

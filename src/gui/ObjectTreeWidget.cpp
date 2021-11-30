@@ -84,19 +84,19 @@ ObjectTreeWidget::ObjectTreeWidget(ViaPoint& aViaPoint, GUIResources& aResources
     mGUIResources.onThemeChanged.connect(this, &ObjectTreeWidget::onThemeUpdated);
 
     {
-        mSlimAction = new QAction(tr("slim down"), this);
+        mSlimAction = new QAction(tr("Slim down"), this);
         mSlimAction->connect(mSlimAction, &QAction::triggered, this, &ObjectTreeWidget::onSlimActionTriggered);
 
-        mRenameAction = new QAction(tr("rename"), this);
+        mRenameAction = new QAction(tr("Rename"), this);
         mRenameAction->connect(mRenameAction, &QAction::triggered, this, &ObjectTreeWidget::onRenameActionTriggered);
 
-        mObjectAction = new QAction(tr("create layer object"), this);
+        mObjectAction = new QAction(tr("Create a layer object"), this);
         mObjectAction->connect(mObjectAction, &QAction::triggered, this, &ObjectTreeWidget::onObjectActionTriggered);
 
-        mFolderAction = new QAction(tr("create folder object"), this);
+        mFolderAction = new QAction(tr("Create a folder object"), this);
         mFolderAction->connect(mFolderAction, &QAction::triggered, this, &ObjectTreeWidget::onFolderActionTriggered);
 
-        mDeleteAction = new QAction(tr("delete"), this);
+        mDeleteAction = new QAction(tr("Delete"), this);
         mDeleteAction->connect(mDeleteAction, &QAction::triggered, this, &ObjectTreeWidget::onDeleteActionTriggered);
     }
 }
@@ -304,7 +304,7 @@ void ObjectTreeWidget::endRenameEditor()
 
         virtual QString name() const
         {
-            return CmndName::tr("rename a object");
+            return CmndName::tr("Rename object");
         }
 
         virtual void exec()
@@ -465,7 +465,7 @@ void ObjectTreeWidget::onContextMenuRequested(const QPoint& aPos)
         {
             mSlimAction->setText(
                         objItem->node().isSlimmedDown() ?
-                            tr("fatten") : tr("slim down"));
+                            tr("Fatten") : tr("Slim down"));
             menu.addAction(mSlimAction);
             menu.addSeparator();
         }
@@ -589,7 +589,7 @@ void ObjectTreeWidget::onObjectActionTriggered(bool)
 	
 	
 				cmnd::ScopedMacro macro(mProject->commandStack(),
-										CmndName::tr("create a layer object"));
+                                        CmndName::tr("Create a layer object"));  // Unsure if it's "layer object" or "layered object"
 				// notifier
 				{
 					auto coreNotifier = new core::ObjectTreeNotifier(*mProject);
@@ -661,7 +661,7 @@ void ObjectTreeWidget::onFolderActionTriggered(bool)
         // create command
         {
             cmnd::ScopedMacro macro(mProject->commandStack(),
-                                    CmndName::tr("create a folder object"));
+                                    CmndName::tr("Create a folder object"));
 
             // create node
             core::FolderNode* ptr = new core::FolderNode("folder0");
@@ -862,7 +862,7 @@ void ObjectTreeWidget::rowsAboutToBeRemoved(const QModelIndex& aParent, int aSta
             mObjTreeNotifier = new core::ObjectTreeNotifier(*mProject);
             mObjTreeNotifier->event().setType(core::ObjectTreeEvent::Type_Move);
 
-            mMacroScope.construct(mProject->commandStack(), CmndName::tr("move a object"));
+            mMacroScope.construct(mProject->commandStack(), CmndName::tr("Move object"));
             mMacroScope->grabListener(mObjTreeNotifier);
         }
         // record target

@@ -132,7 +132,7 @@ void CentroidMode::moveCentroid(const QVector2D& aNewCentroid, const QVector2D& 
     }
     else
     {
-        cmnd::ScopedMacro macro(stack, CmndName::tr("update centroid of a moving key"));
+        cmnd::ScopedMacro macro(stack, CmndName::tr("Update the centroid of the move key")); // Centroid or Center of Gravity, went with former to stay as close to the original translation as posible
 
         // set notifier
         {

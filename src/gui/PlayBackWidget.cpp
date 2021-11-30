@@ -20,11 +20,11 @@ PlayBackWidget::PlayBackWidget(GUIResources& aResources, QWidget* aParent)
 {
     this->setGeometry(0, 0, kButtonSize, kButtonSize * kButtonCount);
 
-    mButtons.push_back(createButton("rewind",   false, 0, tr("Rewind to Beginning")));
-    mButtons.push_back(createButton("stepback", false, 1, tr("Frame by Frame Reverse")));
+    mButtons.push_back(createButton("rewind",   false, 0, tr("Return to the first frame")));  // Closer to original japanese translation
+    mButtons.push_back(createButton("stepback", false, 1, tr("Return one frame")));
     mButtons.push_back(createButton("play",     true,  2, tr("Play")));
-    mButtons.push_back(createButton("step",     false, 3, tr("Frame by Frame Forward")));
-    mButtons.push_back(createButton("fast",     false, 4, tr("Forward to End")));
+    mButtons.push_back(createButton("step",     false, 3, tr("Advance one frame")));
+    mButtons.push_back(createButton("fast",     false, 4, tr("Advance to final frame")));
     mButtons.push_back(createButton("loop",     true,  5, tr("Loop")));
 
     mGUIResources.onThemeChanged.connect(this, &PlayBackWidget::onThemeUpdated);

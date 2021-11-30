@@ -22,7 +22,7 @@ ModePanel::ModePanel(QWidget* aParent, GUIResources& aResources, const PushDeleg
     addButton(ctrl::ToolType_Bone,   "bone",   tr("Bone Creating"));
     addButton(ctrl::ToolType_Pose,   "pose",   tr("Bone Posing"));
     addButton(ctrl::ToolType_Mesh,   "mesh",   tr("Mesh Creating"));
-    addButton(ctrl::ToolType_FFD,    "ffd",    tr("Free Form Deform"));
+    addButton(ctrl::ToolType_FFD,    "ffd",    tr("Free-form Deform"));
 
     mGUIResources.onThemeChanged.connect(this, &ModePanel::onThemeUpdated);
 }

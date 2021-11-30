@@ -20,7 +20,7 @@ BonePanel::BonePanel(QWidget* aParent, GUIResources& aResources)
     , mEIRadius()
     , mEIPressure()
 {
-    this->setTitle(tr("BoneBuilding"));
+    this->setTitle(tr("Bone Construction"));
     createMode();
     updateTypeParam(mParam.mode);
 }
@@ -57,7 +57,7 @@ void BonePanel::createMode()
     static const int kScale = 100;
 
     // paint influence radius
-    mPIRadius.reset(new SliderItem(tr("radius"), this->palette(), this));
+    mPIRadius.reset(new SliderItem(tr("Radius"), this->palette(), this));
     mPIRadius->setAttribute(util::Range(5, 1000), mParam.piRadius, 50);
     mPIRadius->connectOnChanged([=](int aValue)
     {
@@ -66,7 +66,7 @@ void BonePanel::createMode()
     });
 
     // paint influence pressure
-    mPIPressure.reset(new SliderItem(tr("pressure"), this->palette(), this));
+    mPIPressure.reset(new SliderItem(tr("Pressure"), this->palette(), this));
     mPIPressure->setAttribute(util::Range(0, kScale), mParam.piPressure * kScale, kScale / 10);
     mPIPressure->connectOnMoved([=](int aValue)
     {
@@ -74,7 +74,7 @@ void BonePanel::createMode()
         this->onParamUpdated(false);
     });
     // erase influence radius
-    mEIRadius.reset(new SliderItem(tr("radius"), this->palette(), this));
+    mEIRadius.reset(new SliderItem(tr("Radius"), this->palette(), this));
     mEIRadius->setAttribute(util::Range(5, 1000), mParam.eiRadius, 50);
     mEIRadius->connectOnChanged([=](int aValue)
     {
@@ -83,7 +83,7 @@ void BonePanel::createMode()
     });
 
     // erase influence pressure
-    mEIPressure.reset(new SliderItem(tr("pressure"), this->palette(), this));
+    mEIPressure.reset(new SliderItem(tr("Pressure"), this->palette(), this));
     mEIPressure->setAttribute(util::Range(0, kScale), mParam.eiPressure * kScale, kScale / 10);
     mEIPressure->connectOnMoved([=](int aValue)
     {

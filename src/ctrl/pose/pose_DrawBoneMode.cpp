@@ -159,7 +159,7 @@ void DrawBoneMode::pullBone(Bone2& aTarget, const QVector2D& aPull, float aPullP
         }
         else
         {
-            cmnd::ScopedMacro macro(stack, CmndName::tr("pull bones of a posing key"));
+            cmnd::ScopedMacro macro(stack, CmndName::tr("Pull the bones of the posing key"));
 
             // set notifier
             {

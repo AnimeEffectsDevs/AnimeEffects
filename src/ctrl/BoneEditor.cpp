@@ -78,7 +78,7 @@ void BoneEditor::updateEvent(EventType)
     resetCurrentTarget();
 }
 
-void BoneEditor::renderQt(const core::RenderInfo& aInfo, QPainter& aPainter)
+void BoneEditor::renderQt(const core::RenderInfo& aInfo, QPainter& aPainter)  // What does this code snippet do?
 {
 #if 0
     if (mKeyOwner.key)
@@ -143,7 +143,7 @@ void BoneEditor::resetCurrentTarget(QString* aMessage)
             mTarget.node = nullptr;
             if (aMessage)
             {
-                *aMessage = UILog::tr("The object which has an invalid posture was given.");
+                *aMessage = UILog::tr("An object with an invalid pose has been given");
             }
         }
     }

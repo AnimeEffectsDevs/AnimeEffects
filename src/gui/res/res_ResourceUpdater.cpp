@@ -324,7 +324,7 @@ void ResourceUpdater::load(QTreeWidget& aTree, const QString& aFilePath)
     {
         auto& stack = mProject.commandStack();
 
-        cmnd::ScopedMacro macro(stack, CmndName::tr("add new resource"));
+        cmnd::ScopedMacro macro(stack, CmndName::tr("Add new resource"));
 
         // notifier
         auto notifier = new AddNewOneNotifier(mViaPoint, mProject);
@@ -374,7 +374,7 @@ img::ResourceNode* ResourceUpdater::createPsdTree(const QString& aFilePath, bool
     if (file.fail())
     {
         QMessageBox::warning(nullptr, tr("FileIO Error"),
-                             tr("Can not found a PSD file."));
+                             tr("PSD file not found."));
         return nullptr;
     }
 
@@ -647,7 +647,7 @@ bool ResourceUpdater::tryReloadCorrespondingImages(
         auto corresponds = findCorrespondingNode(newNode->children(), *node);
         if (corresponds.first != 1)
         {
-            auto text = tr("Failed to find a corresponding node.") +
+            auto text = tr("Could not find a node with a matching name.") +
                     " (" + node->data().identifier() + ")";
             QMessageBox::warning(nullptr, tr("Operation Error"), text);
             return false;
@@ -660,7 +660,7 @@ bool ResourceUpdater::tryReloadCorrespondingImages(
     auto beIdentified = allChildrenCanBeIdentified(targetNode, *newNode);
     if (!beIdentified.first)
     {
-        auto text = tr("Failed to identify nodes by following duplications.") + "\n";
+        auto text = tr("Node could not be identified due to the following duplications.") + "\n";  // I've no idea how to translate this (下記の重複により、ノードの特定ができませんでした)
         for (auto& duplicated : beIdentified.second)
         {
             text += duplicated->treePath() + "\n";
@@ -687,7 +687,7 @@ bool ResourceUpdater::tryReloadCorrespondingImages(
                               newNode->data().identifier().toLatin1().data());
 
         auto& stack = mProject.commandStack();
-        cmnd::ScopedMacro macro(stack, CmndName::tr("reload images"));
+        cmnd::ScopedMacro macro(stack, CmndName::tr("Reload image"));
 
         // notifier
         auto notifier = new ModificationNotifier(mViaPoint, mProject, item->treePos());
@@ -725,7 +725,7 @@ void ResourceUpdater::remove(QTreeWidget& aTree, Item& aTopItem)
             {
                 QMessageBox::warning(
                             nullptr, tr("Operation Error"),
-                            tr("Some layers are referenced by objects yet."));
+                            tr("Some layers are still referenced by the object"));
                 return;
             }
         }
@@ -755,7 +755,7 @@ void ResourceUpdater::remove(QTreeWidget& aTree, Item& aTopItem)
         auto& stack = mProject.commandStack();
         auto& holder = mProject.resourceHolder();
 
-        cmnd::ScopedMacro macro(stack, CmndName::tr("delete images"));
+        cmnd::ScopedMacro macro(stack, CmndName::tr("Delete image"));
 
         // notifier
         auto notifier = new DeleteNotifier(mViaPoint, mProject);

@@ -23,7 +23,7 @@ FFDPanel::FFDPanel(QWidget* aParent, GUIResources& aResources)
     , mEraseRadius()
     , mErasePressure()
 {
-    this->setTitle(tr("FreeFormDeform"));
+    this->setTitle(tr("Free-form Deformation"));
     createBrush();
     updateTypeParam(mParam.type);
 }
@@ -52,10 +52,10 @@ void FFDPanel::createBrush()
     mHardnessGroup.reset(new SingleOutItem(3, QSize(kButtonSpace, kButtonSpace), this));
     mHardnessGroup->setChoice(mParam.hardness);
     mHardnessGroup->setToolTips(QStringList() <<
-                                tr("Quadratic") <<
-                                tr("Quartic") <<
-                                tr("Octic"));
-    mHardnessGroup->setIcons(QVector<QIcon>() <<
+                                tr("Second order") << // This is a weird one, I like the names Hidefuku chose, but they aren't very useful for understanding//
+                                tr("Fourth order") << // what this function actually does, I'm unaware as to why it is measured in orders (次) and //
+                                tr("Eighth order"));  // I'm specially confused as to why it goes from 2(ニ次), to 4(四次) and then to 8(八次), when the hardness is //
+    mHardnessGroup->setIcons(QVector<QIcon>() <<  // seemingly meassured from 1 to 3. If you know why and have a more accurate translation, please push it :) //
                              mResources.icon("hardness1") <<
                              mResources.icon("hardness2") <<
                              mResources.icon("hardness3"));
@@ -68,7 +68,7 @@ void FFDPanel::createBrush()
     static const int kScale = 100;
 
     // radius
-    mRadius.reset(new SliderItem(tr("radius"), this->palette(), this));
+    mRadius.reset(new SliderItem(tr("Radius"), this->palette(), this));
     mRadius->setAttribute(util::Range(5, 1000), mParam.radius, 50);
     mRadius->connectOnChanged([=](int aValue)
     {
@@ -77,7 +77,7 @@ void FFDPanel::createBrush()
     });
 
     // pressure
-    mPressure.reset(new SliderItem(tr("pressure"), this->palette(), this));
+    mPressure.reset(new SliderItem(tr("Pressure"), this->palette(), this));
     mPressure->setAttribute(util::Range(0, kScale), mParam.pressure * kScale, kScale / 10);
     mPressure->connectOnMoved([=](int aValue)
     {
@@ -86,7 +86,7 @@ void FFDPanel::createBrush()
     });
 
     // blur
-    mBlur.reset(new SliderItem(tr("blur"), this->palette(), this));
+    mBlur.reset(new SliderItem(tr("Blur"), this->palette(), this));
     mBlur->setAttribute(util::Range(0, kScale), mParam.blur * kScale, kScale / 10);
     mBlur->connectOnMoved([=](int aValue)
     {
@@ -98,9 +98,9 @@ void FFDPanel::createBrush()
     mEraseHardnessGroup.reset(new SingleOutItem(3, QSize(kButtonSpace, kButtonSpace), this));
     mEraseHardnessGroup->setChoice(mParam.eraseHardness);
     mEraseHardnessGroup->setToolTips(QStringList() <<
-                                     tr("Quadratic") <<
-                                     tr("Quartic") <<
-                                     tr("Octic"));
+                                     tr("Second order") << // Should we just keep the names as is?
+                                     tr("Fourth order") <<
+                                     tr("Eighth order"));
     mEraseHardnessGroup->setIcons(QVector<QIcon>() <<
                              mResources.icon("hardness1") <<
                              mResources.icon("hardness2") <<
@@ -112,7 +112,7 @@ void FFDPanel::createBrush()
     });
 
     // erase radius
-    mEraseRadius.reset(new SliderItem(tr("radius"), this->palette(), this));
+    mEraseRadius.reset(new SliderItem(tr("Radius"), this->palette(), this));
     mEraseRadius->setAttribute(util::Range(5, 1000), mParam.eraseRadius, 50);
     mEraseRadius->connectOnChanged([=](int aValue)
     {
@@ -121,7 +121,7 @@ void FFDPanel::createBrush()
     });
 
     // erase pressure
-    mErasePressure.reset(new SliderItem(tr("pressure"), this->palette(), this));
+    mErasePressure.reset(new SliderItem(tr("Pressure"), this->palette(), this));
     mErasePressure->setAttribute(util::Range(0, kScale), mParam.erasePressure * kScale, kScale / 10);
     mErasePressure->connectOnMoved([=](int aValue)
     {
