@@ -1,0 +1,8 @@
+add_subdirectory(cmnd)
+add_subdirectory(core)
+add_subdirectory(ctrl)
+add_subdirectory(gl)
+add_subdirectory(gui)
+add_subdirectory(img)
+add_subdirectory(thr)
+add_subdirectory(util)

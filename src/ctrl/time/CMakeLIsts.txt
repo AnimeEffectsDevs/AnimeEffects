@@ -1,0 +1,7 @@
+set(SRC
+time_Current.cpp
+time_Focuser.cpp
+time_Renderer.cpp
+time_Scaler.cpp
+)
+add_library(${LIB_TIME} ${SRC})
