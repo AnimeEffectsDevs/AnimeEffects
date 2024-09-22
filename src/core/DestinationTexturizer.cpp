@@ -1,6 +1,7 @@
 #include "gl/Global.h"
 #include "gl/Util.h"
 #include "core/DestinationTexturizer.h"
+#include "battery/embed.hpp"
 
 namespace {
 static const int kAttachmentId = 0;
@@ -104,13 +105,13 @@ void DestinationTexturizer::createShader() {
     auto shader = &mShader;
 
     gl::ExtendShader source;
-    if (!source.openFromFileVert("./data/shader/PartialScreenCopyingVert.glsl")) {
-        XC_FATAL_ERROR("FileIO Error", "Current location: " + QDir::currentPath() +
-                           "Failed to open vertex shader file.", source.log());
+    {
+        auto tmp = b::embed<"../../data/shader/PartialScreenCopyingVert.glsl">();
+        source.openFromTextVert(QString::fromUtf8(tmp.data(), tmp.size()));
     }
-    if (!source.openFromFileFrag("./data/shader/PartialScreenCopyingFrag.glsl")) {
-        XC_FATAL_ERROR("FileIO Error", "Current location: " + QDir::currentPath() +
-                           "Failed to open fragment shader file.", source.log());
+    {
+        auto tmp = b::embed<"../../data/shader/PartialScreenCopyingFrag.glsl">();
+        source.openFromTextFrag(QString::fromUtf8(tmp.data(), tmp.size()));
     }
 
     if (!source.resolveVariation()) {

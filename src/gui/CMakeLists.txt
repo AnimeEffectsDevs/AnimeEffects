@@ -99,6 +99,14 @@ add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE
         AudioPlaybackWidget.cpp
         AudioPlaybackWidget.h
 )
+
+b_embed(${PROJECT_NAME} ../../data/encode/VideoEncode.txt)
+b_embed(${PROJECT_NAME} ../../data/locale/translation_ja.qm)
+b_embed(${PROJECT_NAME} ../../data/locale/translation_zh.qm)
+b_embed(${PROJECT_NAME} ../../data/locale/preference.txt)
+b_embed(${PROJECT_NAME} ../../data/locale/preference_ja.txt)
+b_embed(${PROJECT_NAME} ../../data/locale/preference_zh.txt)
+
 target_include_directories(${PROJECT_NAME} PRIVATE
     ..
 )

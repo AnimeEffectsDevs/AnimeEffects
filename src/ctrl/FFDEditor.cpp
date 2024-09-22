@@ -23,17 +23,12 @@ FFDEditor::FFDEditor(Project& aProject, DriverResources& aDriverResources, UILog
     if (!mDriverResources.meshTransformerResource()) {
         gl::Global::makeCurrent();
         mDriverResources.grabMeshTransformerResoure(new core::MeshTransformerResource());
-        mDriverResources.meshTransformerResource()->setup("./data/shader/MeshTransformVert.glsl");
+        mDriverResources.meshTransformerResource()->setup();
     }
     if (!mDriverResources.ffdTaskResource()) {
         gl::Global::makeCurrent();
         mDriverResources.grabFFDTaskResource(new ffd::TaskResource());
-        mDriverResources.ffdTaskResource()->setup(
-            "./data/shader/FreeFormDeformVert.glsl",
-            "./data/shader/FFDEraseVert.glsl",
-            "./data/shader/FFDFocusVertexVert.glsl",
-            "./data/shader/FFDBlurVert.glsl"
-        );
+        mDriverResources.ffdTaskResource()->setup();
     }
 
 #if 0

@@ -1,10 +1,22 @@
-cmake_minimum_required(VERSION 3.16)
-project(AnimeEffects VERSION 1.5.0 LANGUAGES C CXX)
+cmake_minimum_required(VERSION 3.21)
+project(AnimeEffects C CXX)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
+
+set(CMAKE_CXX_STANDARD 20)
+
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
+include(get_cpm)
+
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+else()
+    set(B_PRODUCTION_MODE ON)
+endif()
+CPMAddPackage("gh:batterycenter/embed#v1.2.19")
 
 include(GNUInstallDirs)
 # You need to add the Qt directory to your path if you're on Windows, otherwise you'll have a very bad time

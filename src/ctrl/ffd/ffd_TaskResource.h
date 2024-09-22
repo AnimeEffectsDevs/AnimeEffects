@@ -13,9 +13,7 @@ namespace ffd {
 
         TaskResource();
 
-        void setup(
-            const QString& aBrushPath, const QString& aEraserPath, const QString& aFocuserPath, const QString& aBlurPath
-        );
+        void setup();
 
         gl::EasyShaderProgram& program(int aType, int aHard);
         const gl::EasyShaderProgram& program(int aType, int aHard) const;

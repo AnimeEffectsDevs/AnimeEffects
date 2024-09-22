@@ -2,6 +2,7 @@
 #include "gl/Global.h"
 #include "gl/ExtendShader.h"
 #include "ctrl/ffd/ffd_TaskResource.h"
+#include "battery/embed.hpp"
 
 namespace ctrl {
 namespace ffd {
@@ -9,13 +10,11 @@ namespace ffd {
     //-------------------------------------------------------------------------------------------------
     TaskResource::TaskResource() {}
 
-    void TaskResource::setup(
-        const QString& aBrushPath, const QString& aEraserPath, const QString& aFocuserPath, const QString& aBlurPath
-    ) {
+    void TaskResource::setup() {
         // load brush shader
         {
-            QString code;
-            loadFile(aBrushPath, code);
+            auto tmp = b::embed<"../../data/shader/FreeFormDeformVert.glsl">();
+            auto code = QString::fromUtf8(tmp.data(), tmp.size());
 
             for (int hard = 0; hard < kHardness; ++hard) {
                 buildShader(mProgram[kTypeDeformer * kHardness + hard], code, kTypeDeformer, hard);
@@ -24,8 +23,8 @@ namespace ffd {
 
         // load eraser shader
         {
-            QString code;
-            loadFile(aEraserPath, code);
+            auto tmp = b::embed<"../../data/shader/FFDEraseVert.glsl">();
+            auto code = QString::fromUtf8(tmp.data(), tmp.size());
 
             for (int hard = 0; hard < kHardness; ++hard) {
                 buildShader(mProgram[kTypeEraser * kHardness + hard], code, kTypeEraser, hard);
@@ -34,16 +33,17 @@ namespace ffd {
 
         // load focuser shader
         {
-            QString code;
-            loadFile(aFocuserPath, code);
+            auto tmp = b::embed<"../../data/shader/FFDFocusVertexVert.glsl">();
+            auto code = QString::fromUtf8(tmp.data(), tmp.size());
 
             buildShader(mProgram[kTypeFocuser * kHardness], code, kTypeFocuser, 0);
         }
 
         // load blur path
         {
-            QString code;
-            loadFile(aBlurPath, code);
+            auto tmp = b::embed<"../../data/shader/FFDBlurVert.glsl">();
+            auto code = QString::fromUtf8(tmp.data(), tmp.size());
+
             buildBlurShader(mBlurProgram, code);
         }
     }

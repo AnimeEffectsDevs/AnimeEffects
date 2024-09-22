@@ -2,7 +2,6 @@
 #include <QMessageBox>
 #include <QDomDocument>
 #include <qstandardpaths.h>
-#include "qprocess.h"
 #include "util/TextUtil.h"
 #include "cmnd/BasicCommands.h"
 #include "cmnd/ScopedMacro.h"
@@ -16,27 +15,23 @@
 #include "gui/GeneralSettingDialog.h"
 #include "gui/MouseSettingDialog.h"
 #include "util/NetworkUtil.h"
+#include "battery/embed.hpp"
 
 namespace gui {
 //-------------------------------------------------------------------------------------------------
 QDomDocument getVideoExportDocument() {
-    QFile file("./data/encode/VideoEncode.txt");
-
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qDebug() << file.errorString();
-        return {};
-    }
+    auto tmp = b::embed<"../../data/encode/VideoEncode.txt">();
+    auto code = QString::fromUtf8(tmp.data(), tmp.size());
 
     QDomDocument prop;
     QString errorMessage;
     int errorLine = 0;
     int errorColumn = 0;
-    if (!prop.setContent(&file, false, &errorMessage, &errorLine, &errorColumn)) {
-        qDebug() << "invalid xml file. " << file.fileName() << errorMessage << ", line = " << errorLine
+    if (!prop.setContent(code, false, &errorMessage, &errorLine, &errorColumn)) {
+        qDebug() << "Internal error: invalid xml file. Error: " << errorMessage << ", line = " << errorLine
                  << ", column = " << errorColumn;
         return {};
     }
-    file.close();
 
     return prop;
 }

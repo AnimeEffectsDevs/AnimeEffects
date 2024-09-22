@@ -29,7 +29,7 @@ LayerNode::LayerNode(const QString& aName, ShaderHolder& aShaderHolder):
     mTimeLine(),
     mShaderHolder(aShaderHolder),
     mIsClipped(),
-    mMeshTransformer("./data/shader/MeshTransformVert.glsl"),
+    mMeshTransformer(),
     mCurrentMesh(),
     mClippees() {}
 

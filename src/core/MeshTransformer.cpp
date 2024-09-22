@@ -7,9 +7,9 @@
 namespace core {
 
 //-------------------------------------------------------------------------------------------------
-MeshTransformer::MeshTransformer(const QString& aShaderPath):
+MeshTransformer::MeshTransformer():
     mResource(*(new MeshTransformerResource())), mResourceOwns(true), mOutPositions(), mOutXArrows(), mOutYArrows() {
-    mResource.setup(aShaderPath);
+    mResource.setup();
 }
 
 MeshTransformer::MeshTransformer(MeshTransformerResource& aResource):

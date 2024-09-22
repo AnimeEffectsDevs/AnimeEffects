@@ -8,7 +8,7 @@ namespace core {
 class MeshTransformerResource {
 public:
     MeshTransformerResource();
-    void setup(const QString& aShaderPath);
+    void setup();
     gl::EasyShaderProgram& program(bool aUseSkinning, bool aUseDualQuaternion);
     const gl::EasyShaderProgram& program(bool aUseSkinning, bool aUseDualQuaternion) const;
 

@@ -2,7 +2,9 @@
 #include <QLocale>
 #include <QTextStream>
 #include <QSettings>
+#include <qobject.h>
 #include "gui/LocaleDecider.h"
+#include "battery/embed.hpp"
 
 namespace gui {
 
@@ -31,8 +33,16 @@ LocaleDecider::LocaleDecider(): mLocaleParam(), mTranslator(), mHasTranslator() 
     }
 
     if (!locAbb.isEmpty()) {
-        if (mTranslator.load("translation_" + locAbb, "data/locale")) {
-            mHasTranslator = true;
+        if (locAbb == "ja") {
+            auto locale = b::embed<"../../data/locale/translation_ja.qm">();
+            if (mTranslator.load(reinterpret_cast<const uchar*>(locale.data()), locale.length(), "data/locale")) {
+                mHasTranslator = true;
+            }
+        } else if (locAbb == "zh") {
+            auto locale = b::embed<"../../data/locale/translation_zh.qm">();
+            if (mTranslator.load(reinterpret_cast<const uchar*>(locale.data()), locale.length(), "data/locale")) {
+                mHasTranslator = true;
+            }
         }
     }
 
@@ -45,23 +55,30 @@ LocaleDecider::LocaleDecider(): mLocaleParam(), mTranslator(), mHasTranslator() 
         const QString opt = "";
 #endif
 
-        const QString preference = locAbb.isEmpty() ? "preference" : "preference_" + locAbb;
+        QString preference;
+        if (locAbb == "ja") {
+            auto tmp = b::embed<"../../data/locale/preference_ja.txt">();
+            preference = QString::fromUtf8(tmp.data(), tmp.size());
+        } else if (locAbb == "zh") {
+            auto tmp = b::embed<"../../data/locale/preference_zh.txt">();
+            preference = QString::fromUtf8(tmp.data(), tmp.size());
+        } else {
+            auto tmp = b::embed<"../../data/locale/preference.txt">();
+            preference = QString::fromUtf8(tmp.data(), tmp.size());
+        }
 
-        QFile file("./data/locale/" + preference + ".txt");
-        if (file.open(QIODevice::ReadOnly)) {
-            QTextStream in(&file);
-            while (!in.atEnd()) {
-                auto kv = in.readLine().split('=');
-                if (kv.count() != 2)
-                    continue;
-                auto key = kv[0].trimmed();
-                auto value = kv[1].trimmed();
+        for (const auto line : preference.split('\n')) {
+            auto kv = line.split('=');
+            if (kv.count() != 2)
+                continue;
+            
+            auto key = kv[0].trimmed();
+            auto value = kv[1].trimmed();
 
-                if (key == "font_family" + opt) {
-                    mLocaleParam.fontFamily = value;
-                } else if (key == "font_size" + opt) {
-                    mLocaleParam.fontSize = value;
-                }
+            if (key == "font_family" + opt) {
+                mLocaleParam.fontFamily = value;
+            } else if (key == "font_size" + opt) {
+                mLocaleParam.fontSize = value;
             }
         }
     }

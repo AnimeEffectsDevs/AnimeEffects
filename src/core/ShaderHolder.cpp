@@ -1,6 +1,7 @@
 #include "gl/ExtendShader.h"
 #include "gl/Global.h"
 #include "core/ShaderHolder.h"
+#include "battery/embed.hpp"
 
 namespace core {
 
@@ -37,13 +38,13 @@ gl::EasyShaderProgram& ShaderHolder::reserveShader(img::BlendMode aBlendMode, bo
         auto shader = mShaders[index];
 
         gl::ExtendShader source;
-        if (!source.openFromFileVert("./data/shader/LayerDrawingVert.glsl")) {
-            XC_FATAL_ERROR("FileIO Error", "Current location: " + QDir::currentPath() +
-                               "Failed to open vertex shader file.", source.log());
+        {
+            auto tmp = b::embed<"../../data/shader/LayerDrawingVert.glsl">();
+            source.openFromTextVert(QString::fromUtf8(tmp.data(), tmp.size()));
         }
-        if (!source.openFromFileFrag("./data/shader/LayerDrawingFrag.glsl")) {
-            XC_FATAL_ERROR("FileIO Error", "Current location: " + QDir::currentPath() +
-                               "Failed to open fragment shader file.", source.log());
+        {
+            auto tmp = b::embed<"../../data/shader/LayerDrawingFrag.glsl">();
+            source.openFromTextFrag(QString::fromUtf8(tmp.data(), tmp.size()));
         }
 
         auto blendFunc = QString("Blend") + img::getBlendFuncNameFromBlendMode(aBlendMode);
@@ -90,13 +91,14 @@ gl::EasyShaderProgram& ShaderHolder::reserveHSVShader() {
         auto shader = mHSVShaders[index];
 
         gl::ExtendShader source;
-        if (!source.openFromFileVert("./data/shader/HSVAdjustVert.glsl")) {
-            XC_FATAL_ERROR("FileIO Error", "Current location: " + QDir::currentPath() +
-                               "Failed to open vertex shader file.", source.log());
+        
+        {
+            auto tmp = b::embed<"../../data/shader/HSVAdjustVert.glsl">();
+            source.openFromTextVert(QString::fromUtf8(tmp.data(), tmp.size()));
         }
-        if (!source.openFromFileFrag("./data/shader/HSVAdjustFrag.glsl")) {
-            XC_FATAL_ERROR("FileIO Error", "Current location: " + QDir::currentPath() +
-                               "Failed to open fragment shader file.", source.log());
+        {
+            auto tmp = b::embed<"../../data/shader/HSVAdjustFrag.glsl">();
+            source.openFromTextFrag(QString::fromUtf8(tmp.data(), tmp.size()));
         }
 
         if (!source.resolveVariation()) {
@@ -134,13 +136,13 @@ gl::EasyShaderProgram& ShaderHolder::reserveGridShader() {
         auto shader = mGridShaders[0];
 
         gl::ExtendShader source;
-        if (!source.openFromFileVert("./data/shader/GridDrawingVert.glsl")) {
-            XC_FATAL_ERROR("FileIO Error", "Current location: " + QDir::currentPath() +
-                               "Failed to open vertex shader file.", source.log());
+        {
+            auto tmp = b::embed<"../../data/shader/GridDrawingVert.glsl">();
+            source.openFromTextVert(QString::fromUtf8(tmp.data(), tmp.size()));
         }
-        if (!source.openFromFileFrag("./data/shader/GridDrawingFrag.glsl")) {
-            XC_FATAL_ERROR("FileIO Error", "Current location: " + QDir::currentPath() +
-                                "Failed to open fragment shader file.", source.log());
+        {
+            auto tmp = b::embed<"../../data/shader/GridDrawingFrag.glsl">();
+            source.openFromTextFrag(QString::fromUtf8(tmp.data(), tmp.size()));
         }
 
         if (!source.resolveVariation()) {
@@ -175,13 +177,13 @@ gl::EasyShaderProgram& ShaderHolder::reserveClipperShader(bool aIsClippee) {
         auto shader = mClipperShaders[aIsClippee];
 
         gl::ExtendShader source;
-        if (!source.openFromFileVert("./data/shader/ClipperWritingVert.glsl")) {
-            XC_FATAL_ERROR("FileIO Error", "Current location: " + QDir::currentPath() +
-                               "Failed to open vertex shader file.", source.log());
+        {
+            auto tmp = b::embed<"../../data/shader/ClipperWritingVert.glsl">();
+            source.openFromTextVert(QString::fromUtf8(tmp.data(), tmp.size()));
         }
-        if (!source.openFromFileFrag("./data/shader/ClipperWritingFrag.glsl")) {
-            XC_FATAL_ERROR("FileIO Error", "Current location: " + QDir::currentPath() +
-                               "Failed to open fragment shader file.", source.log());
+        {
+            auto tmp = b::embed<"../../data/shader/ClipperWritingFrag.glsl">();
+            source.openFromTextFrag(QString::fromUtf8(tmp.data(), tmp.size()));
         }
 
         source.setVariationValue("IS_CLIPPEE", aIsClippee ? "1" : "0");

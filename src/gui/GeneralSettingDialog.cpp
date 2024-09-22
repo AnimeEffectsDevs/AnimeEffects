@@ -421,12 +421,10 @@ GeneralSettingDialog::GeneralSettingDialog(GUIResources& aGUIResources, QWidget*
                 ffmpegNotif.exec();
                 return;
             }
-            // Test file
-            QString testFile = QFileInfo("./data/themes/classic/icon/filew.png").absoluteFilePath();
-
             // Sample gif test
             QProcess gif;
-            gif.start(ffmpeg, {"-i", testFile, "gif.gif"}, QProcess::ReadWrite);
+            const QStringList testInput = {"-f", "lavfi", "-i", "testsrc=duration=1:size=24x20:rate=2"};
+            gif.start(ffmpeg, testInput + QStringList{"gif.gif"}, QProcess::ReadWrite);
             gif.waitForFinished();
             bool exportSuccess = gif.exitStatus() == 0 && QFileInfo::exists("gif.gif");
             qDebug() << "Gif exists: " << QFileInfo::exists("gif.gif")
@@ -443,7 +441,7 @@ GeneralSettingDialog::GeneralSettingDialog(GUIResources& aGUIResources, QWidget*
 
             // Palettegen test
             QProcess palettegen;
-            palettegen.start(ffmpeg, {"-i", testFile, "-vf", "palettegen", "palette.png"}, QProcess::ReadWrite);
+            palettegen.start(ffmpeg, testInput + QStringList{"-vf", "palettegen", "palette.png"}, QProcess::ReadWrite);
             palettegen.waitForFinished();
             bool pGenSuccess = palettegen.exitStatus() == 0 && QFileInfo::exists("palette.png");
             if (!pGenSuccess) {

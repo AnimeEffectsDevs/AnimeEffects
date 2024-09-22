@@ -70,6 +70,21 @@ add_library(${PROJECT_NAME}
     TimeLine.cpp TimeLine.h
     TimeLineEvent.cpp TimeLineEvent.h
 )
+
+set(SHADERS_DIR ../../data/shader)
+b_embed(${PROJECT_NAME} ${SHADERS_DIR}/ClipperWritingFrag.glsl)
+b_embed(${PROJECT_NAME} ${SHADERS_DIR}/ClipperWritingVert.glsl)
+b_embed(${PROJECT_NAME} ${SHADERS_DIR}/GridDrawingFrag.glsl)
+b_embed(${PROJECT_NAME} ${SHADERS_DIR}/GridDrawingVert.glsl)
+b_embed(${PROJECT_NAME} ${SHADERS_DIR}/HSVAdjustFrag.glsl)
+b_embed(${PROJECT_NAME} ${SHADERS_DIR}/HSVAdjustVert.glsl)
+b_embed(${PROJECT_NAME} ${SHADERS_DIR}/LayerDrawingFrag.glsl)
+b_embed(${PROJECT_NAME} ${SHADERS_DIR}/LayerDrawingVert.glsl)
+b_embed(${PROJECT_NAME} ${SHADERS_DIR}/MeshTransformVert.glsl)
+b_embed(${PROJECT_NAME} ${SHADERS_DIR}/PartialScreenCopyingFrag.glsl)
+b_embed(${PROJECT_NAME} ${SHADERS_DIR}/PartialScreenCopyingVert.glsl)
+b_embed(${PROJECT_NAME} ${SHADERS_DIR}/TestBlurVert.glsl)
+
 target_include_directories(${PROJECT_NAME} PUBLIC
     ..
 )
@@ -83,6 +98,7 @@ target_compile_definitions(${PROJECT_NAME} PUBLIC
     AE_PROJECT_FORMAT_OLDEST_MAJOR_VERSION=0
     AE_PROJECT_FORMAT_OLDEST_MINOR_VERSION=4
     USE_GL_CORE_PROFILE
+    SHADERS_DIR="${SHADERS_DIR}"
 )
 
 target_link_libraries(${PROJECT_NAME} PUBLIC

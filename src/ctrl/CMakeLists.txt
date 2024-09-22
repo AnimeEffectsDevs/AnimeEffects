@@ -100,6 +100,13 @@ add_library(${PROJECT_NAME}
     time/time_Scaler.cpp time/time_Scaler.h
         ExportParams.h
 )
+
+set(SHADERS_DIR ../../data/shader)
+b_embed(${PROJECT_NAME} ${SHADERS_DIR}/FFDBlurVert.glsl)
+b_embed(${PROJECT_NAME} ${SHADERS_DIR}/FFDEraseVert.glsl)
+b_embed(${PROJECT_NAME} ${SHADERS_DIR}/FFDFocusVertexVert.glsl)
+b_embed(${PROJECT_NAME} ${SHADERS_DIR}/FreeFormDeformVert.glsl)
+
 target_include_directories(${PROJECT_NAME} PUBLIC
     ..
 )

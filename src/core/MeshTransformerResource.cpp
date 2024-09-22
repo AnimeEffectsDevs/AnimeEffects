@@ -2,15 +2,16 @@
 #include "gl/Global.h"
 #include "gl/ExtendShader.h"
 #include "core/MeshTransformerResource.h"
+#include "battery/embed.hpp"
 
 namespace core {
 
 //-------------------------------------------------------------------------------------------------
 MeshTransformerResource::MeshTransformerResource() {}
 
-void MeshTransformerResource::setup(const QString& aShaderPath) {
-    QString code;
-    loadFile(aShaderPath, code);
+void MeshTransformerResource::setup() {
+    auto tmp = b::embed<"../../data/shader/MeshTransformVert.glsl">();
+    auto code = QString::fromUtf8(tmp.data(), tmp.size());
 
     buildShader(mProgram[0], code, false, false);
     buildShader(mProgram[1], code, true, false);

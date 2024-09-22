@@ -16,7 +16,7 @@ namespace core {
 
 class MeshTransformer: private util::NonCopyable {
 public:
-    MeshTransformer(const QString& aShaderPath);
+    MeshTransformer();
     MeshTransformer(MeshTransformerResource& aResource);
     ~MeshTransformer();
 
